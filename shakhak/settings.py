@@ -84,6 +84,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'daarmaan.client.middlewares.DaarmaanAuthMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -106,6 +107,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     # 'django.contrib.admin',
+    'daarmaan.client',
     'vanda.apps.multilang',
 )
 
@@ -142,3 +144,21 @@ INTERNAL_IPS = [
     '127.0.0.1',
     'localhost',
 ]
+
+
+# Configuring SSO through Daarmaan service
+AUTHENTICATION_BACKENDS = (
+    'daarmaan.client.backends.DaarmaanBackend',
+)
+
+
+DAARMAAN_SERVER = "http://localhost:9000"
+DAARMAAN_LOGIN = "%s/authenticate/" % DAARMAAN_SERVER
+
+SERVICE_NAME = "shakhak.com"
+SERVICE_KEY = "somekey"
+
+LOGIN_URL = DAARMAAN_SERVER
+LOGOUT_URL = "/auth/logout/"
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

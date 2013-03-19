@@ -20,12 +20,17 @@ import os
 
 from django.conf.urls import patterns, include, url
 from django.conf import settings
+from vakhshour.events.discovery import handler_discovery
 
+
+handler_discovery()
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^auth/', include("daarmaan.client.urls", namespace="daarmaan",
+                        app_name="client")),
     url(r'^$', 'shakhak.views.home', name='home'),
     # url(r'^admin/', include(admin.site.urls)),
 )

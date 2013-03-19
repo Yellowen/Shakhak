@@ -5,6 +5,7 @@ import sys
 try:
     import __dev__
 except ImportError:
+    print "EEEE"
     pass
 
 
