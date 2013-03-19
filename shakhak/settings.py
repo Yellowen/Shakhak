@@ -89,7 +89,8 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'shakhak.urls'
+LEAF_URLCONF = 'shakhak.urls'
+ROOT_URLCONF = 'vanda.apps.multilang.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'shakhak.wsgi.application'
@@ -105,6 +106,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     # 'django.contrib.admin',
+    'vanda.apps.multilang',
 )
 
 # A sample logging configuration. The only tangible logging
