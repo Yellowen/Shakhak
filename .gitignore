@@ -4,3 +4,4 @@
 db/*
 env/*
 __dev__.py
+docs/build
