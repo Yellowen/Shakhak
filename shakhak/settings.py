@@ -162,3 +162,7 @@ LOGIN_URL = DAARMAAN_SERVER
 LOGOUT_URL = "/auth/logout/"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+DJAMO = {
+    "name": "shakhak",
+}
