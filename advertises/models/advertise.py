@@ -18,7 +18,9 @@
 # -----------------------------------------------------------------------------
 
 from djamo import Document, Collection
-from djamo.serializers import DjangoUser
+from djamo.serializers import DjangoUser, List, EmbeddedDocument, String
+
+from .log import Log
 
 
 class Advertise (Document):
@@ -27,6 +29,8 @@ class Advertise (Document):
     """
     fields = {
         "user": DjangoUser(),
+        "log": List(EmbeddedDocument(Log)),
+        "title": String(required=True, max_length=256),
     }
 
 

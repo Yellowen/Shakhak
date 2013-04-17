@@ -109,8 +109,14 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     'daarmaan.client',
     'vanda.apps.multilang',
+    'advertises',
 )
 
+TEST_RUNNER = "vanda.core.test_runner.ExcludeAppsTestSuiteRunner"
+TEST_EXCLUDE_APPS = [
+    'vanda.apps.multilang',
+    'daarmaan.client',
+]
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
