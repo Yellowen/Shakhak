@@ -21,6 +21,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from django.contrib.auth import get_user_model
 from djamo.serializers import String
+from djamo.db import client
 
 from advertises.models import Advertise, Advertises
 
@@ -29,6 +30,7 @@ from advertises.models import Advertise, Advertises
 class AdvertiseTest(TestCase):
 
     def setUp(self):
+        client.drop_database()
         self.user = get_user_model().objects.create_user("user_a",
                                                          "w@w.cc",
                                                          "123456")
