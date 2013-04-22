@@ -1,0 +1,7 @@
+* Phases
+** Phase 1
+
+   *** Basic advertise CRUD for users
+   *** Implement a loca currency
+   *** implement a sitemap
+   *** create the basic algorithm to load ads in same page using backbone
