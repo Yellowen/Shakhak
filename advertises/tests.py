@@ -49,3 +49,16 @@ class AdvertiseTest(TestCase):
                        user=self.user)
 
         Advertises().save(ad)
+
+    def test_basic_find(self):
+
+        col = Advertises()
+
+        print "USER TYPE", self.user, type(self.user)
+        ad = Advertise(title="Advertise 1",
+                       user=self.user)
+
+        col.save(ad)
+
+        ads = col.find()
+        print "#>>> ", [i for i in ads]
