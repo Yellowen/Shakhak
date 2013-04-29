@@ -39,9 +39,10 @@ class AdvertiseTest(TestCase):
 
         ad = Advertise()
         advertises = Advertises()
+
         self.assertRaisesMessage(String.ValidationError,
-                                  "'title' field is required",
-                                  advertises.save, ad)
+                                 "'title' field is required",
+                                 advertises.save, ad)
 
     def test_basic_advertise(self):
 
@@ -54,11 +55,12 @@ class AdvertiseTest(TestCase):
 
         col = Advertises()
 
-        print "USER TYPE", self.user, type(self.user)
         ad = Advertise(title="Advertise 1",
                        user=self.user)
 
         col.save(ad)
 
         ads = col.find()
-        print "#>>> ", [i for i in ads]
+        adscount = ads.count()
+        self.assertNotEqual(adscount, 0, "no document found")
+        self.assertTrue(hasattr(ads[0], "logs"), True)

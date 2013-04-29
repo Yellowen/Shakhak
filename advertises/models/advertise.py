@@ -17,8 +17,10 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
 
+from django.utils.translation import ugettext as _
 from djamo import Document, Collection
 from djamo.serializers import DjangoUser, List, EmbeddedDocument, String
+from djamo.utils import six
 
 from .log import Log
 
@@ -29,9 +31,25 @@ class Advertise (Document):
     """
     fields = {
         "user": DjangoUser(),
-        "log": List(EmbeddedDocument(Log)),
+        "logs": List(EmbeddedDocument(Log), required=True),
         "title": String(required=True, max_length=256),
     }
+
+    _log_msg = ""
+
+    def log(self, msg):
+        if not msg:
+            raise ValueError("'msg' should not be empty")
+
+        self._log_msg = six.u(msg)
+
+    def save(self, *args, **kwargs):
+        if "logs" not in self:
+            self.logs = [Log(msg=self._log_msg or _("Advertise saved"))]
+        else:
+            self.logs.append(Log(msg=self._log_msg or _("Advertise saved")))
+
+        super(Advertise, self).save(*args, **kwargs)
 
 
 class Advertises (Collection):

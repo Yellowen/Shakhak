@@ -24,5 +24,6 @@ from djamo import Document
 
 class Log(Document):
 
-    def save(self, *args, **kwargs):
+    def __init__(self,*args, **kwargs):
+        super(Log, self).__init__(*args, **kwargs)
         self["timestamp"] = datetime.datetime.now()
