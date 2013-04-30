@@ -35,19 +35,19 @@ class Advertise (Document):
         "title": String(required=True, max_length=256),
     }
 
-    _log_msg = ""
+    log_msg = ""
 
     def log(self, msg):
         if not msg:
             raise ValueError("'msg' should not be empty")
 
-        self._log_msg = six.u(msg)
+        self.log_msg = six.u(msg)
 
     def save(self, *args, **kwargs):
         if "logs" not in self:
-            self.logs = [Log(msg=self._log_msg or _("Advertise saved"))]
+            self.logs = [Log(msg=self.log_msg or _("Advertise saved"))]
         else:
-            self.logs.append(Log(msg=self._log_msg or _("Advertise saved")))
+            self.logs.append(Log(msg=self.log_msg or _("Advertise saved")))
 
         super(Advertise, self).save(*args, **kwargs)
 

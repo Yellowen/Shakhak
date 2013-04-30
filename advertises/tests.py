@@ -64,3 +64,12 @@ class AdvertiseTest(TestCase):
         adscount = ads.count()
         self.assertNotEqual(adscount, 0, "no document found")
         self.assertTrue(hasattr(ads[0], "logs"), True)
+
+        ad = Advertise(title="some other ad",
+                       user=self.user)
+        ad.log("just created")
+        col.save(ad)
+        ads = col.find_one({"title": "some other ad"})
+
+        print ">>>> ", ads, ads.logs
+        self.assertEqual(ads.logs[-1].msg, "just created")
