@@ -16,31 +16,14 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-import os
 
-from django.conf.urls import patterns, include, url
-from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from vakhshour.events.discovery import handler_discovery
+from django.shortcuts import render_to_response as rr
+from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 
-handler_discovery()
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
-
-urlpatterns = patterns('',
-    (r'^auth/', include("daarmaan.client.urls")),
-    url(r'^$', 'shakhak.views.home', name='home'),
-    # url(r'^admin/', include(admin.site.urls)),
-)
-
-urlpatterns += staticfiles_urlpatterns()
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^statics/(?P<path>.*)$',
-         'django.views.static.serve',
-         {'document_root': os.path.join(os.path.dirname(__file__),
-                                        '../media/statics').replace('\\', '/')}),
-)
+@login_required
+def dashboard_index(request):
+    return rr("dashboard.html",
+              {"app": "dashboard.js"},
+              context_instance=RequestContext(request))

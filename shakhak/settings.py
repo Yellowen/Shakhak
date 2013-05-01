@@ -26,6 +26,8 @@ DATABASES = {
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
 ]
 
 # Local time zone for this installation. Choices can be found here:
@@ -60,6 +62,9 @@ MEDIA_ROOT = root("../media/statics/")
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/statics/'
+
+STATIC_URL = "/static/"
+STATIC_ROOT = root("../media/static_media/")
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -109,6 +114,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     'daarmaan.client',
     'vanda.apps.multilang',
+    'vanda.js.less',
     'advertises',
 )
 
@@ -164,6 +170,7 @@ DAARMAAN_LOGIN = "%s/authenticate/" % DAARMAAN_SERVER
 SERVICE_NAME = "shakhak.com"
 SERVICE_KEY = "somekey"
 
+DAARMAAN_LOGIN_PAGE = DAARMAAN_SERVER
 LOGIN_URL = DAARMAAN_SERVER
 LOGOUT_URL = "/auth/logout/"
 
@@ -172,3 +179,18 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DJAMO = {
     "name": "shakhak",
 }
+
+DAARMAAN_EXCLUDE_URLS = [
+    "^/statics/.*",
+]
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    'django.core.context_processors.static',
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages",
+)

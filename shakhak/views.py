@@ -22,5 +22,5 @@ from django.template import RequestContext
 
 
 def home(request):
-    return rr("index.html", {},
+    return rr("index.html", {"app": "main.app.js"},
               context_instance=RequestContext(request))

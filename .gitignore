@@ -5,4 +5,4 @@ db/*
 env/*
 __dev__.py
 docs/build
-media/statics/lib/*
+media/statics/css/lib/*
