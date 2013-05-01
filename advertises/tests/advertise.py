@@ -31,28 +31,32 @@ class AdvertiseTest(TestCase):
 
     def setUp(self):
         client.drop_database()
-        self.user = get_user_model().objects.create_user("user_a",
-                                                         "w@w.cc",
+        self.user = get_user_model().objects.create_user("user_a", "w@w.cc",
                                                          "123456")
 
     def test_empty_title_save(self):
-
+        """
+        Test the title validation
+        """
         ad = Advertise()
         advertises = Advertises()
-
         self.assertRaisesMessage(String.ValidationError,
                                  "'title' field is required",
                                  advertises.save, ad)
 
     def test_basic_advertise(self):
-
+        """
+        Test basic save.
+        """
         ad = Advertise(title="Advertise 1",
                        user=self.user)
 
         Advertises().save(ad)
 
     def test_basic_find(self):
-
+        """
+        Test save, find, find_one and log message.
+        """
         col = Advertises()
 
         ad = Advertise(title="Advertise 1",
@@ -71,5 +75,4 @@ class AdvertiseTest(TestCase):
         col.save(ad)
         ads = col.find_one({"title": "some other ad"})
 
-        print ">>>> ", ads, ads.logs
         self.assertEqual(ads.logs[-1].msg, "just created")
