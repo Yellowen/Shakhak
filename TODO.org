@@ -5,3 +5,12 @@
    *** Implement a loca currency
    *** implement a sitemap
    *** create the basic algorithm to load ads in same page using backbone
+
+* Bugs
+
+  ** Auth bug in daarmaan with redirecting and session lost
+
+
+* Features
+
+  * Use Tastypie to implement a Djamo compatible API
