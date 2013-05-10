@@ -18,30 +18,10 @@
 # -----------------------------------------------------------------------------
 import os
 
-from django.conf.urls import patterns, include, url
-from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from vakhshour.events.discovery import handler_discovery
-
-
-handler_discovery()
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.conf.urls import patterns, url
 
 urlpatterns = patterns('',
-    (r'^auth/', include("daarmaan.client.urls")),
-    url(r'^$', 'shakhak.views.home', name='home'),
-    (r'^dashboard/', include("advertises.dashboard.urls")),
-    # url(r'^admin/', include(admin.site.urls)),
-)
+    url(r'^$', 'advertises.dashboard.views.index', name='dashboard-index'),
+    url(r'^$', 'advertises.dashboard.views.index', name='dashboard-index'),
 
-urlpatterns += staticfiles_urlpatterns()
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^statics/(?P<path>.*)$',
-         'django.views.static.serve',
-         {'document_root': os.path.join(os.path.dirname(__file__),
-                                        '../media/statics').replace('\\', '/')}),
 )

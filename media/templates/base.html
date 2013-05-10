@@ -35,8 +35,8 @@
 	<ul class="span6 pull-right">
 	  {{ request.user }}
 	  {% if request.user.is_authenticated %}
-	  <li><a href="{% url "dashboard" %}#/new/advertise/">{% trans "New Advertise" %}</a></li>
-	  <li><a href="{% url "logout" %}">{% trans "Logout" %}</a></li>
+	  <li><a href="/dashboard/advertise/new">{% trans "New Advertise" %}</a></li>
+	  <li><a href="/auth/logout/">{% trans "Logout" %}</a></li>
 	  {% else %}
 	  <li><a href="/auth/login/">{% trans "Login" %}</a></li>
 	  {% endif %}
