@@ -54,3 +54,6 @@ class Advertise (Document):
 
 class Advertises (Collection):
     document = Advertise
+
+    class Meta:
+        app_label = "advertises"

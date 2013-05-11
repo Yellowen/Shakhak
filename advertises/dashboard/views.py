@@ -19,6 +19,8 @@
 from django.shortcuts import render_to_response as rr
 from django.template import RequestContext
 from djamo.utils.views.generic.list import ListView
+## from django.contrib.auth.models import User
+## from django.views.generic.list import ListView
 
 from advertises.models import Advertises
 
@@ -31,7 +33,5 @@ def index(request):
 
 class AdvertiseList(ListView):
     collection = Advertises
-
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        return self.render_to_response(context)
+    #queryset = Advertises().find()
+    #model = User
