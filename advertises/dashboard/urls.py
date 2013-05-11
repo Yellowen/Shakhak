@@ -20,8 +20,11 @@ import os
 
 from django.conf.urls import patterns, url
 
+from advertises.dashboard.views import AdvertiseList
+
+
 urlpatterns = patterns('',
     url(r'^$', 'advertises.dashboard.views.index', name='dashboard-index'),
-    url(r'^$', 'advertises.dashboard.views.index', name='dashboard-index'),
+    url(r'^advertises/$', AdvertiseList.as_view(), name='advertise-list'),
 
 )
