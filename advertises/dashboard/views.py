@@ -19,10 +19,10 @@
 from django.shortcuts import render_to_response as rr
 from django.template import RequestContext
 from djamo.utils.views.generic.list import ListView
-## from django.contrib.auth.models import User
-## from django.views.generic.list import ListView
+from django.views.generic.edit import FormView
 
 from advertises.models import Advertises
+from advertises.dashboard.forms import AdvertiseForm
 
 
 def index(request):
@@ -35,3 +35,9 @@ class AdvertiseList(ListView):
     collection = Advertises
     #queryset = Advertises().find()
     #model = User
+
+
+class AdvertiseForm(FormView):
+    form_class = AdvertiseForm
+    success_url = "/dashboard/advertises/"
+    template_name = "advertises/advertise_form.html"

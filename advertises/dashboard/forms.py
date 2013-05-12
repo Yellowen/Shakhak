@@ -16,16 +16,10 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 # -----------------------------------------------------------------------------
-import os
 
-from django.conf.urls import patterns, url
-
-from advertises.dashboard.views import AdvertiseList, AdvertiseForm
+from django import forms
+from django.utils.translation import ugettext as _
 
 
-urlpatterns = patterns('',
-    url(r'^$', 'advertises.dashboard.views.index', name='dashboard-index'),
-    url(r'^advertises/$', AdvertiseList.as_view(), name='advertise-list'),
-    url(r'^advertises/new/$', AdvertiseForm.as_view(), name='advertise-form'),
-
-)
+class AdvertiseForm(forms.Form):
+    title = forms.CharField(max_length=256, label=_("Title"))

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
+{% block content %}
 <ul>
 {% for advertise in object_list %}
-<li>{{ advertise }}</li>
+<li>{{ advertise.title }}</li>
 {% endfor %}
 </ul>
+
+{% endblock content %}

@@ -24,6 +24,7 @@
   {% endif %}
 </head>
 <body>
+{% block body %}
 
   {% block header %}
   <header>
@@ -47,7 +48,12 @@
   </header>
   {% endblock header %}
 
-  {% block body %}
+
+  <content>
+    {% block content %}
+
+    {% endblock content %}
+  </content>
 
   {% endblock body %}
 </body>
