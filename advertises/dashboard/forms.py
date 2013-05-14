@@ -19,7 +19,19 @@
 
 from django import forms
 from django.utils.translation import ugettext as _
+from djamo.utils.forms import DocumentForm
+
+from advertises.models import Advertise
 
 
-class AdvertiseForm(forms.Form):
+class AdvertiseForm1(forms.Form):
     title = forms.CharField(max_length=256, label=_("Title"))
+
+
+class AdvertiseForm(DocumentForm):
+
+    dl = forms.CharField()
+
+    class Meta:
+        document = Advertise
+        exclude = ["user", "logs"]
